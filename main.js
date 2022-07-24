@@ -68,7 +68,7 @@ class BasicCharacterController {
       loader.setPath('./resources/zombie/');
       loader.load('walk.fbx', (a) => { _OnLoad('walk', a); });
       loader.load('run.fbx', (a) => { _OnLoad('run', a); });
-      loader.load('dance2.fbx', (a) => { _OnLoad('idle', a); });
+      loader.load('walk2.fbx', (a) => { _OnLoad('idle', a); });
       loader.load('dance.fbx', (a) => { _OnLoad('dance', a); });
     });
   }
@@ -442,8 +442,10 @@ class IdleState extends State {
       idleAction.setEffectiveTimeScale(1.0);
       idleAction.setEffectiveWeight(1.0);
       idleAction.crossFadeFrom(prevAction, 0.5, true);
+      idleAction.setEffectiveTimeScale(0.1);
       idleAction.play();
     } else {
+      idleAction.setEffectiveTimeScale(0.1);
       idleAction.play();
     }
   }
