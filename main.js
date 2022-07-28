@@ -592,17 +592,32 @@ class CharacterControllerDemo {
   }
 
   _RAF() {
-    requestAnimationFrame((t) => {
-      if (this._previousRAF === null) {
+
+    if (window.scrollY < 100)
+      requestAnimationFrame((t) => {
+        if (this._previousRAF === null) {
+          this._previousRAF = t;
+        }
+
+        this._RAF();
+
+        this._threejs.render(this._scene, this._camera);
+        this._Step(t - this._previousRAF);
         this._previousRAF = t;
-      }
+      });
+    
+    else
+      requestAnimationFrame((t) => {
+        if (this._previousRAF === null) {
+          this._previousRAF = t;
+        }
 
-      this._RAF();
+        this._RAF();
 
-      this._threejs.render(this._scene, this._camera);
-      this._Step(t - this._previousRAF);
-      this._previousRAF = t;
-    });
+        this._threejs.render(this._scene, this._camera);
+        // this._Step(t - this._previousRAF);
+        this._previousRAF = t;
+      });
   }
 
   _Step(timeElapsed) {

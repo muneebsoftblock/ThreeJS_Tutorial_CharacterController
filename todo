@@ -1,0 +1,3 @@
+import .js in script tag
+
+import .js in .js file and call from script tag
